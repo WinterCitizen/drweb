@@ -1,0 +1,26 @@
+---
+version: '3'
+
+services:
+  drweb:
+    build: .
+    container_name: drweb
+    environment:
+      - MONGO_HOST=mongo
+      - MONGO_PORT=27017
+    networks:
+      - local
+    working_dir: /app/src/
+    ports:
+      - 8000:8000
+    command: python main.py
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    networks:
+      - local
+
+networks:
+  local:
+...
